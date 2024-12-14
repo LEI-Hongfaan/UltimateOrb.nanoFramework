@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UltimateOrb.nanoFramework.System.SpanChar</id>
+    <version>0.1.0</version>
+    <title>UltimateOrb.nanoFramework.System.SpanChar</title>
+    <authors>LEI Hongfaan</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <releaseNotes>
+    </releaseNotes>
+    <developmentDependency>false</developmentDependency>
+    <readme>docs\README.md</readme>
+    <projectUrl>https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework</projectUrl>
+    <repository type="git" url="https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) LEI Hongfaan</copyright>
+    <description>This package includes the UltimateOrb.nanoFramework.System.SpanChar assembly for .NET nanoFramework C# projects.</description>
+    <tags>nanoFramework C# csharp netmf netnf Span SpanChar</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.SpanChar.dll" target="lib\UltimateOrb.nanoFramework.System.SpanChar.dll" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.SpanChar.pdb" target="lib\UltimateOrb.nanoFramework.System.SpanChar.pdb" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.SpanChar.pdbx" target="lib\UltimateOrb.nanoFramework.System.SpanChar.pdbx" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.SpanChar.pe" target="lib\UltimateOrb.nanoFramework.System.SpanChar.pe" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.SpanChar.xml" target="lib\UltimateOrb.nanoFramework.System.SpanChar.xml" />
+    <file src="..\README.md" target="docs\" />
+    <file src="..\LICENSE.txt" target="" />
+  </files>
+</package>
