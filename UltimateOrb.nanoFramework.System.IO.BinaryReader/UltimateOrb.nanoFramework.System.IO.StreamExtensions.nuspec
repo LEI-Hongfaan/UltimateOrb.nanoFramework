@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UltimateOrb.nanoFramework.System.IO.BinaryReader</id>
+    <version>0.1.0</version>
+    <title>UltimateOrb.nanoFramework.System.IO.BinaryReader</title>
+    <authors>LEI Hongfaan</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <releaseNotes>
+    </releaseNotes>
+    <developmentDependency>false</developmentDependency>
+    <readme>docs\README.md</readme>
+    <projectUrl>https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework</projectUrl>
+    <repository type="git" url="https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) LEI Hongfaan</copyright>
+    <description>This package includes the UltimateOrb.nanoFramework.System.IO.BinaryReader assembly for .NET nanoFramework C# projects.</description>
+    <tags>nanoFramework C# csharp netmf netnf IO Stream BinaryReader</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+			<dependency id="UltimateOrb.nanoFramework.System.IO.StreamExtensions" version="0.1.0" />
+			<dependency id="UltimateOrb.nanoFramework.System.SpanChar" version="0.1.0" />
+		</dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.IO.BinaryReader.dll" target="lib\UltimateOrb.nanoFramework.System.IO.BinaryReader.dll" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.IO.BinaryReader.pdb" target="lib\UltimateOrb.nanoFramework.System.IO.BinaryReader.pdb" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.IO.BinaryReader.pdbx" target="lib\UltimateOrb.nanoFramework.System.IO.BinaryReader.pdbx" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.IO.BinaryReader.pe" target="lib\UltimateOrb.nanoFramework.System.IO.BinaryReader.pe" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.System.IO.BinaryReader.xml" target="lib\UltimateOrb.nanoFramework.System.IO.BinaryReader.xml" />
+    <file src="..\README.md" target="docs\" />
+    <file src="..\LICENSE.txt" target="" />
+  </files>
+</package>

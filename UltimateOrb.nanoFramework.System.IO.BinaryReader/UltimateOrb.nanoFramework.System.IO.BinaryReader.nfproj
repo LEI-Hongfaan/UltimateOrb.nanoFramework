@@ -15,6 +15,8 @@
     <RootNamespace>UltimateOrb.nanoFramework.System.IO.BinaryReader</RootNamespace>
     <AssemblyName>UltimateOrb.nanoFramework.System.IO.BinaryReader</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
@@ -37,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="UltimateOrb.nanoFramework.System.IO.StreamExtensions.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UltimateOrb.nanoFramework.System.IO.StreamExtensions\UltimateOrb.nanoFramework.System.IO.StreamExtensions.nfproj" />
