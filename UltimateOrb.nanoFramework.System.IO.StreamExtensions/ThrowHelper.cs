@@ -14,6 +14,11 @@ namespace System {
     internal static partial class ThrowHelper {
 
         //[DoesNotReturn]
+        internal static void ThrowArgumentNullException(ExceptionArgument argument) {
+            throw new ArgumentNullException(GetArgumentName(argument));
+        }
+
+        //[DoesNotReturn]
         internal static void ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource) {
             throw GetArgumentOutOfRangeException(argument, resource);
         }
@@ -25,13 +30,34 @@ namespace System {
 
         internal static Exception CreateEndOfFileException() =>
             new /*EndOfStream*/IOException(/*SR.*/"IO_EOF_ReadBeyondEOF");
-        
+
+        //[DoesNotReturn]
+        internal static void ThrowNotSupportedException_UnreadableStream() {
+            throw new NotSupportedException(/*SR.NotSupported_*/"UnreadableStream");
+        }
+
+        //[DoesNotReturn]
+        internal static void ThrowNotSupportedException_UnwritableStream() {
+            throw new NotSupportedException(/*SR.NotSupported_*/"UnwritableStream");
+        }
+
+        //[DoesNotReturn]
+        internal static void ThrowObjectDisposedException_StreamClosed(string? objectName) {
+            throw new ObjectDisposedException(/*objectName, *//*SR.ObjectDisposed_*/"StreamClosed");
+        }
+
         private static ArgumentOutOfRangeException GetArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource) {
             return new ArgumentOutOfRangeException(GetArgumentName(argument), GetResourceString(resource));
         }
 
         private static string GetArgumentName(ExceptionArgument argument) {
             switch (argument) {
+            case ExceptionArgument.count:
+                return "count";
+            case ExceptionArgument.buffer:
+                return "buffer";
+            case ExceptionArgument.offset:
+                return "offset";
             case ExceptionArgument.minimumBytes:
                 return "minimumBytes";
             default:
@@ -48,6 +74,8 @@ namespace System {
                 return /*SR.ArgumentOutOfRange_*/"NeedNonNegNum";
             case ExceptionResource.ArgumentOutOfRange_NotGreaterThanBufferLength:
                 return /*SR.ArgumentOutOfRange_*/"NotGreaterThanBufferLength";
+            case ExceptionResource.Argument_InvalidOffLen:
+                return /*SR.Argument_*/"InvalidOffLen";
             default:
                 //Debug.Fail("The enum value is not defined, please check the ExceptionResource Enum.");
                 Debug.WriteLine("The enum value is not defined, please check the ExceptionResource Enum.");
@@ -61,6 +89,9 @@ namespace System {
     // The convention for this enum is using the argument name as the enum name
     //
     internal enum ExceptionArgument {
+        count,
+        buffer,
+        offset,
         minimumBytes,
     }
 
@@ -70,5 +101,6 @@ namespace System {
     internal enum ExceptionResource {
         ArgumentOutOfRange_NeedNonNegNum,
         ArgumentOutOfRange_NotGreaterThanBufferLength,
+        Argument_InvalidOffLen,
     }
 }

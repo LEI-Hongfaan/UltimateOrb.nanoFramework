@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>UltimateOrb.nanoFramework.System</RootNamespace>
+    <RootNamespace>System</RootNamespace>
     <AssemblyName>UltimateOrb.nanoFramework.System.SpanChar</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

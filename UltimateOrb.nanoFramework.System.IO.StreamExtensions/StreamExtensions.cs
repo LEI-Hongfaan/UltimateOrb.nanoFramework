@@ -4,6 +4,11 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using static System.ExceptionExtensions;
+
+[assembly: InternalsVisibleTo("UltimateOrb.nanoFramework.System.IO.Compression.DeflateStream.DecompressOnly")]
+[assembly: InternalsVisibleTo("UltimateOrb.nanoFramework.System.IO.Compression.DeflateStream")]
 
 namespace System.IO {
 
@@ -87,6 +92,74 @@ namespace System.IO {
 
             if (bufferLength < minimumBytes) {
                 ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.minimumBytes, ExceptionResource.ArgumentOutOfRange_NotGreaterThanBufferLength);
+            }
+        }
+
+        /// <summary>Validates arguments provided to the <see cref="CopyTo(Stream, int)"/> or <see cref="CopyToAsync(Stream, int, CancellationToken)"/> methods.</summary>
+        /// <param name="destination">The <see cref="Stream"/> "destination" argument passed to the copy method.</param>
+        /// <param name="bufferSize">The integer "bufferSize" argument passed to the copy method.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="destination"/> was null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="bufferSize"/> was not a positive value.</exception>
+        /// <exception cref="NotSupportedException"><paramref name="destination"/> does not support writing.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="destination"/> does not support writing or reading.</exception>
+        internal static void ValidateCopyToArguments(Stream destination, int bufferSize) {
+            ArgumentNullException_ThrowIfNull(destination, nameof(destination));
+
+            ArgumentOutOfRangeException_ThrowIfNegativeOrZero(bufferSize, nameof(bufferSize));
+
+            if (!destination.CanWrite) {
+                if (destination.CanRead) {
+                    ThrowHelper.ThrowNotSupportedException_UnwritableStream();
+                }
+
+                ThrowHelper.ThrowObjectDisposedException_StreamClosed(destination.GetType().Name);
+            }
+        }
+
+        public static void CopyTo(this Stream stream, Stream destination, int bufferSize) {
+            ValidateCopyToArguments(destination, bufferSize);
+            if (!stream.CanRead) {
+                if (stream.CanWrite) {
+                    ThrowHelper.ThrowNotSupportedException_UnreadableStream();
+                }
+
+                ThrowHelper.ThrowObjectDisposedException_StreamClosed(stream.GetType().Name);
+            }
+
+            //byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize);
+            byte[] buffer = new byte[bufferSize];
+            try {
+                int bytesRead;
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0) {
+                    destination.Write(buffer, 0, bytesRead);
+                }
+            } finally {
+                //ArrayPool<byte>.Shared.Return(buffer);
+            }
+        }
+
+        /// <summary>Validates arguments provided to reading and writing methods on <see cref="Stream"/>.</summary>
+        /// <param name="buffer">The array "buffer" argument passed to the reading or writing method.</param>
+        /// <param name="offset">The integer "offset" argument passed to the reading or writing method.</param>
+        /// <param name="count">The integer "count" argument passed to the reading or writing method.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="buffer"/> was null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <paramref name="offset"/> was outside the bounds of <paramref name="buffer"/>, or
+        /// <paramref name="count"/> was negative, or the range specified by the combination of
+        /// <paramref name="offset"/> and <paramref name="count"/> exceed the length of <paramref name="buffer"/>.
+        /// </exception>
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ValidateBufferArguments(byte[] buffer, int offset, int count) {
+            if (buffer is null) {
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.buffer);
+            }
+
+            if (offset < 0) {
+                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.offset, ExceptionResource.ArgumentOutOfRange_NeedNonNegNum);
+            }
+
+            if ((uint)count > buffer.Length - offset) {
+                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.count, ExceptionResource.Argument_InvalidOffLen);
             }
         }
     }

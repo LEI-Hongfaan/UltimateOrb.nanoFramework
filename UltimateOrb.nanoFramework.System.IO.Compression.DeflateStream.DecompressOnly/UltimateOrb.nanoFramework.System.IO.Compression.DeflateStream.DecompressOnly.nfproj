@@ -8,15 +8,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>81843936-8d33-4f94-b17f-6d92ab64543f</ProjectGuid>
+    <ProjectGuid>b88bc1e4-a8d9-47ba-9806-05dcbb781550</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>System.IO</RootNamespace>
-    <AssemblyName>UltimateOrb.nanoFramework.System.IO.BinaryReader</AssemblyName>
+    <RootNamespace>System.IO.Compression</RootNamespace>
+    <AssemblyName>UltimateOrb.nanoFramework.System.IO.Compression.DeflateStream.DecompressOnly</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <NuGetAudit>true</NuGetAudit>
     <NuGetAuditMode>all</NuGetAuditMode>
@@ -24,11 +22,24 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="ArrayExtensions.cs" />
-    <Compile Include="BinaryReader.cs" />
+    <Compile Include="Adler32.cs" />
     <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Inflater.cs" />
+    <Compile Include="CompressionMode.cs" />
+    <Compile Include="CompressionLevel.cs" />
+    <Compile Include="DeflateStream.cs" />
+    <Compile Include="InfBlocks.cs" />
+    <Compile Include="InfCodes.cs" />
+    <Compile Include="Inflate.cs" />
+    <Compile Include="InfTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="StaticTree.cs" />
+    <Compile Include="SupportClass.cs" />
+    <None Include="Tree.cs" />
     <Compile Include="ThrowHelper.cs" />
+    <Compile Include="Zlib.cs" />
+    <Compile Include="ZStream.cs" />
+    <None Include="UltimateOrb.nanoFramework.System.IO.StreamExtensions.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib">
@@ -43,11 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="UltimateOrb.nanoFramework.System.IO.StreamExtensions.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UltimateOrb.nanoFramework.System.IO.StreamExtensions\UltimateOrb.nanoFramework.System.IO.StreamExtensions.nfproj" />
-    <ProjectReference Include="..\UltimateOrb.nanoFramework.System.SpanChar\UltimateOrb.nanoFramework.System.SpanChar.nfproj" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>

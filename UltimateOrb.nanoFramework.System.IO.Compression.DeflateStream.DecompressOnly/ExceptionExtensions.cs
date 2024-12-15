@@ -15,5 +15,11 @@ namespace System {
         public static void ArgumentOutOfRangeException_ThrowIfNegative(int arg) {
             if (arg < 0) throw new ArgumentOutOfRangeException(nameof(arg), "NeedNonNegNum");
         }
+
+        public static void ObjectDisposedException_ThrowIf(bool condition, object instance) {
+            if (condition) {
+                ThrowHelper.ThrowObjectDisposedException(instance);
+            }
+        }
     }
 }

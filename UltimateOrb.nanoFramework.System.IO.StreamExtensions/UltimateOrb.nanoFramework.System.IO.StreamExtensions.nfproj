@@ -12,14 +12,19 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>UltimateOrb.nanoFramework.System.IO.StreamExtensions</RootNamespace>
+    <RootNamespace>System.IO</RootNamespace>
     <AssemblyName>UltimateOrb.nanoFramework.System.IO.StreamExtensions</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>low</NuGetAuditLevel>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
+    <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="StreamExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThrowHelper.cs" />

@@ -18,8 +18,8 @@
     <tags>nanoFramework C# csharp netmf netnf IO Stream BinaryReader</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
-			<dependency id="UltimateOrb.nanoFramework.System.IO.StreamExtensions" version="0.1.0" />
 			<dependency id="UltimateOrb.nanoFramework.System.SpanChar" version="0.1.0" />
+			<dependency id="UltimateOrb.nanoFramework.System.IO.StreamExtensions" version="0.2.0" />
 		</dependencies>
   </metadata>
   <files>
