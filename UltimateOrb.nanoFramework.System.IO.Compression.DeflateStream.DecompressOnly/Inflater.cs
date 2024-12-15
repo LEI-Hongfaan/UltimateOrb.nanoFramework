@@ -240,6 +240,7 @@ namespace System.IO.Compression {
             ErrorCode error;
             try {
                 //error = CreateZLibStreamForInflate(out _zlibStream, windowBits);
+                _zlibStream = new ZStream();
                 error = (ErrorCode)_zlibStream.inflateInit(windowBits);
             } catch (Exception exception) // could not load the ZLib dll
               {
@@ -328,6 +329,6 @@ namespace System.IO.Compression {
             }
         }
 
-        private bool IsInputBufferHandleAllocated => _zlibStream.next_out != null;
+        private bool IsInputBufferHandleAllocated => _zlibStream != null && _zlibStream.next_out != null;
     }
 }
