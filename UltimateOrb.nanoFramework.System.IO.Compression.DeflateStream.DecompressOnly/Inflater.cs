@@ -61,7 +61,7 @@ namespace System.IO.Compression {
 
             Debug.Assert(null != bytes, "Can't pass in a null output buffer!");
             var bufPtr = bytes;
-                return InflateVerified(bufPtr, offset, length);
+            return InflateVerified(bufPtr, offset, length);
         }
 
         public int Inflate(SpanByte destination) {
@@ -115,10 +115,13 @@ namespace System.IO.Compression {
                     bc = rc;
                 }
                 var c = InflateVerified(b, 0, bc);
-                if (c == -1) {
+                if (c == 0) {
                     return tc;
                 }
-                bs.CopyTo(buffer.Slice(tc));
+                if (c == -1) {
+                    throw new Exception("?");
+                }
+                bs.Slice(0, c).CopyTo(buffer.Slice(tc));
                 rc -= c;
                 tc += c;
                 if (rc == 0) {
@@ -325,12 +328,11 @@ namespace System.IO.Compression {
 
             lock (SyncLock) {
                 _zlibStream.avail_in = 0;
-                _zlibStream.next_in = null;
+                //_zlibStream.next_in = null;
                 //_zlibStream.next_in_index = default;
                 //_inputBufferHandle.Dispose();
             }
         }
-
-        private bool IsInputBufferHandleAllocated => _zlibStream != null && _zlibStream.next_out != null;
+        private bool IsInputBufferHandleAllocated => _zlibStream != null && _zlibStream.next_in != null && _zlibStream.avail_in > 0;
     }
 }

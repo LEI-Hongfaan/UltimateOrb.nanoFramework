@@ -43,7 +43,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
-	internal sealed class Inflate
+internal sealed class Inflate
 	{
 		
 		private const int MAX_WBITS = 15; // 32K LZ77 window
@@ -155,8 +155,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		{
 			int r;
 			int b;
-			
-			if (z == null || z.istate == null || z.next_in == null)
+
+			if (z == null || z.istate == null || (z.next_in == null && z.avail_in != 0))
 				return Z_STREAM_ERROR;
 			f = f == Z_FINISH?Z_BUF_ERROR:Z_OK;
 			r = Z_BUF_ERROR;

@@ -255,7 +255,7 @@ namespace System.IO.Compression {
 
         public override int Read(byte[] buffer, int offset, int count) {
             ValidateBufferArguments(buffer, offset, count);
-            return ReadCore(new SpanByte(buffer, offset, count));
+            return ReadCore(buffer, offset, count);
         }
 
         public override int Read(SpanByte buffer) {
@@ -269,6 +269,57 @@ namespace System.IO.Compression {
             }
         }
 
+        internal int ReadCore(byte[] buffer, int offset, int count) {
+            EnsureDecompressionMode();
+            EnsureNotDisposed();
+            EnsureBufferInitialized();
+            Debug.Assert(_inflater != null);
+
+            int bytesRead = 0;
+            while (true) {
+                // We were unable to decompress any data.  If the inflater needs additional input
+                // data to proceed, read some to populate it.
+                if (_inflater.NeedsInput()) {
+                    int n = _stream.Read(_buffer, 0, _buffer.Length);
+                    if (n <= 0) {
+                        // - Inflater didn't return any data although a non-empty output buffer was passed by the caller.
+                        // - More input is needed but there is no more input available.
+                        // - Inflation is not finished yet.
+                        // - Provided input wasn't completely empty
+                        // In such case, we are dealing with a truncated input stream.
+                        if (s_useStrictValidation && count > 0 && !_inflater.Finished() && _inflater.NonEmptyInput()) {
+                            ThrowTruncatedInvalidData();
+                        }
+                        break;
+                    } else if (n > _buffer.Length) {
+                        ThrowGenericInvalidData();
+                    } else {
+                        _inflater.SetInput(_buffer, 0, n);
+                    }
+                }
+
+                if (count == 0) {
+                    // The caller provided a zero-byte buffer.  This is typically done in order to avoid allocating/renting
+                    // a buffer until data is known to be available.  We don't have perfect knowledge here, as _inflater.Inflate
+                    // will return 0 whether or not more data is required, and having input data doesn't necessarily mean it'll
+                    // decompress into at least one byte of output, but it's a reasonable approximation for the 99% case.  If it's
+                    // wrong, it just means that a caller using zero-byte reads as a way to delay getting a buffer to use for a
+                    // subsequent call may end up getting one earlier than otherwise preferred.
+                    Debug.Assert(bytesRead == 0);
+                    break;
+                }
+
+                // Try to decompress any data from the inflater into the caller's buffer.
+                // If we're able to decompress any bytes, or if decompression is completed, we're done.
+                bytesRead = _inflater.Inflate(buffer);
+                if (bytesRead != 0 || InflatorIsFinished) {
+                    break;
+                }
+            }
+
+            return bytesRead;
+        }
+
         internal int ReadCore(SpanByte buffer) {
             EnsureDecompressionMode();
             EnsureNotDisposed();
@@ -276,14 +327,14 @@ namespace System.IO.Compression {
             Debug.Assert(_inflater != null);
 
             int bytesRead;
-            while (true) {
+            while (true) {          
                 // Try to decompress any data from the inflater into the caller's buffer.
                 // If we're able to decompress any bytes, or if decompression is completed, we're done.
                 bytesRead = _inflater.Inflate(buffer);
                 if (bytesRead != 0 || InflatorIsFinished) {
                     break;
                 }
-
+                
                 // We were unable to decompress any data.  If the inflater needs additional input
                 // data to proceed, read some to populate it.
                 if (_inflater.NeedsInput()) {
@@ -941,7 +992,7 @@ namespace System.IO.Compression {
 
                 // While there's more decompressed data available, forward it to the buffer stream.
                 while (!_deflateStream._inflater.Finished()) {
-                    int bytesRead = _deflateStream._inflater.Inflate(new SpanByte(_arrayPoolBuffer));
+                    int bytesRead = _deflateStream._inflater.Inflate(_arrayPoolBuffer, 0, _arrayPoolBuffer.Length);
                     if (bytesRead > 0) {
                         _destination.Write(_arrayPoolBuffer, 0, bytesRead);
                     } else if (_deflateStream._inflater.NeedsInput()) {
