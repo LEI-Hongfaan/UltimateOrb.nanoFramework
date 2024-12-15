@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UltimateOrb.nanoFramework.System.IO.Compression.DeflateStream.DecompressOnly</id>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <title>UltimateOrb.nanoFramework.System.IO.Compression.DeflateStream.DecompressOnly</title>
     <authors>LEI Hongfaan</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

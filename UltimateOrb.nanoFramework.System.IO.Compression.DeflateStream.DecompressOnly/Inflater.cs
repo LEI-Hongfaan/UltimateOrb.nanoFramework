@@ -154,10 +154,11 @@ namespace System.IO.Compression {
             lock (SyncLock) {
                 
                 var nextInPtr = _zlibStream.next_in;
+                var nextInOffset = _zlibStream.next_in_index;
                 uint nextAvailIn = (uint)_zlibStream.avail_in;
 
                 // Check the leftover bytes to see if they start with he gzip header ID bytes
-                if (nextInPtr[0] != GZip_Header_ID1 || (nextAvailIn > 1 && nextInPtr[1] != GZip_Header_ID2)) {
+                if (nextInPtr[nextInOffset + 0] != GZip_Header_ID1 || (nextAvailIn > 1 && nextInPtr[nextInOffset + 1] != GZip_Header_ID2)) {
                     return true;
                 }
 
@@ -169,6 +170,7 @@ namespace System.IO.Compression {
 
                 // SetInput on the new stream to the bits remaining from the last stream
                 _zlibStream.next_in = nextInPtr;
+                _zlibStream.next_in_index = nextInOffset;
                 _zlibStream.avail_in = (int)nextAvailIn;
                 _finished = false;
             }
