@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UltimateOrb.nanoFramework.Extensions.SpanByteExtensions</id>
+    <version>0.1.0</version>
+    <title>UltimateOrb.nanoFramework.Extensions.SpanByteExtensions</title>
+    <authors>LEI Hongfaan</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <releaseNotes>
+    </releaseNotes>
+    <developmentDependency>false</developmentDependency>
+    <readme>docs\README.md</readme>
+    <projectUrl>https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework</projectUrl>
+    <repository type="git" url="https://github.com/LEI-Hongfaan/UltimateOrb.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) LEI Hongfaan</copyright>
+    <description>This package includes the UltimateOrb.nanoFramework.Extensions.SpanByteExtensions assembly for .NET nanoFramework C# projects.</description>
+    <tags>nanoFramework C# csharp netmf netnf Span SpanByte</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.dll" target="lib\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.dll" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pdb" target="lib\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pdb" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pdbx" target="lib\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pdbx" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pe" target="lib\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.pe" />
+    <file src="bin\Release\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.xml" target="lib\UltimateOrb.nanoFramework.Extensions.SpanByteExtensions.xml" />
+    <file src="..\README.md" target="docs\" />
+    <file src="..\LICENSE.txt" target="" />
+  </files>
+</package>
