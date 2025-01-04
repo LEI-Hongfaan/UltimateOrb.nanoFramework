@@ -361,4 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/sketch/UltimateOrb.nanoFramework.System.IO.StreamExtensions
+
+/sketch/
+/NFApp[0-9]+/
+/NFClassLibrary[0-9]+/
+/NFApp1
