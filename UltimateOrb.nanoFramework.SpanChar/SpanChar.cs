@@ -81,17 +81,25 @@ namespace System {
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// <paramref name="index"/> is out of range.
         /// </exception>
+#if ULTIMATEORB_NANOFRAMEWORK_SYSTEM_LIBRARY
         public char this[int index] {
+#else
+        public ref char this[int index] {
+#endif
             get {
                 if (index >= _length) {
 #pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one 
                     throw new ArgumentOutOfRangeException();
 #pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one 
                 }
-
+#if ULTIMATEORB_NANOFRAMEWORK_SYSTEM_LIBRARY
                 return _array[_start + index];
+#else
+                return ref _array[_start + index];
+#endif
             }
 
+#if ULTIMATEORB_NANOFRAMEWORK_SYSTEM_LIBRARY
             set {
                 if (index >= _length) {
 #pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one 
@@ -101,6 +109,7 @@ namespace System {
 
                 _array[_start + index] = value;
             }
+#endif
         }
 
         /// <summary>

@@ -8,27 +8,24 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>38937603-01ed-4408-acdb-45516cf0672e</ProjectGuid>
+    <ProjectGuid>116d8a78-b502-4a70-9f6b-5b4b4f5ce44f</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>System</RootNamespace>
-    <AssemblyName>UltimateOrb.nanoFramework.System.SpanChar</AssemblyName>
+    <RootNamespace>System.Runtime.InteropServices</RootNamespace>
+    <AssemblyName>UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory.Wrapped</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-    <NuGetAudit>true</NuGetAudit>
-    <NuGetAuditMode>all</NuGetAuditMode>
-    <NuGetAuditLevel>low</NuGetAuditLevel>
-    <DefineConstants>ULTIMATEORB_NANOFRAMEWORK_SYSTEM_LIBRARY</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Label="nanoFramework">
     <NFMDP_GENERATE_STUBS>True</NFMDP_GENERATE_STUBS>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\UltimateOrb.nanoFramework.SpanChar\SpanChar.cs" Link="SpanChar.cs" />
+    <Compile Include="..\UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory\BitOperations.cs" Link="BitOperations.cs" />
+    <Compile Include="..\UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory\Math.cs" Link="Math.cs" />
+    <Compile Include="..\UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory\NativeMemory.cs" Link="NativeMemory.cs" />
+    <Compile Include="..\UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory\Sys.cs" Link="Sys.cs" />
+    <Compile Include="..\UltimateOrb.nanoFramework.System.Runtime.InteropServices.NativeMemory\ThrowHelper.cs" Link="ThrowHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -38,7 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="UltimateOrb.nanoFramework.System.SpanChar.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UltimateOrb.nanoFramework.IntPtr\UltimateOrb.nanoFramework.IntPtr.nfproj" />
+    <ProjectReference Include="..\UltimateOrb.nanoFramework.nuint\UltimateOrb.nanoFramework.nuint.nfproj" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>

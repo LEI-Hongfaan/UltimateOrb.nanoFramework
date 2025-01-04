@@ -8,27 +8,17 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>38937603-01ed-4408-acdb-45516cf0672e</ProjectGuid>
+    <ProjectGuid>c28719b7-79dd-46b4-b865-c978c595e92a</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>System</RootNamespace>
-    <AssemblyName>UltimateOrb.nanoFramework.System.SpanChar</AssemblyName>
+    <RootNamespace>UltimateOrb.nanoFramework.SpanHelpers</RootNamespace>
+    <AssemblyName>UltimateOrb.nanoFramework.SpanHelpers</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-    <NuGetAudit>true</NuGetAudit>
-    <NuGetAuditMode>all</NuGetAuditMode>
-    <NuGetAuditLevel>low</NuGetAuditLevel>
-    <DefineConstants>ULTIMATEORB_NANOFRAMEWORK_SYSTEM_LIBRARY</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Label="nanoFramework">
-    <NFMDP_GENERATE_STUBS>True</NFMDP_GENERATE_STUBS>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\UltimateOrb.nanoFramework.SpanChar\SpanChar.cs" Link="SpanChar.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -38,7 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="UltimateOrb.nanoFramework.System.SpanChar.nuspec" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>
